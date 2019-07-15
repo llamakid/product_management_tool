@@ -1,0 +1,898 @@
+Started GET "/products" for ::1 at 2019-07-08 12:54:41 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/nathanguy/.rvm/gems/ruby-2.6.3/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 836ms (Views: 822.3ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/products/new" for ::1 at 2019-07-08 12:54:46 -0500
+Processing by ProductsController#new as HTML
+  Rendering products/new.html.erb within layouts/application
+  Rendered products/_property_fields.html.erb (1.3ms)
+  Rendered products/_product_property_fields.html.erb (4.1ms)
+  Rendered products/_form.html.erb (27.0ms)
+  Rendered products/new.html.erb within layouts/application (28.6ms)
+Completed 200 OK in 81ms (Views: 41.9ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/products" for ::1 at 2019-07-08 12:55:12 -0500
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"v0qh9LKVe88UdAN9cu2Mjc5qhMeFDsKeaNflipDlOzCUg12seA93efhfCHV4Ju6GQG82iv8yHB/WyeHVx45PJA==", "product"=>{"name"=>"P2", "upc"=>"2134567890", "available_on(1i)"=>"2019", "available_on(2i)"=>"7", "available_on(3i)"=>"13", "available_on(4i)"=>"17", "available_on(5i)"=>"54", "product_properties_attributes"=>{"0"=>{"property_attributes"=>{"name"=>"airmax"}, "value"=>"green"}}}, "commit"=>"Create Product"}
+  [1m[36mProperty Load (0.6ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."name" = ? LIMIT ?[0m  [["name", "airmax"], ["LIMIT", 1]]
+  ↳ app/models/product_property.rb:8
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/product_property.rb:8
+  [1m[36mProperty Create (0.9ms)[0m  [1m[32mINSERT INTO "properties" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "airmax"], ["created_at", "2019-07-08 17:55:12.659802"], ["updated_at", "2019-07-08 17:55:12.659802"]]
+  ↳ app/models/product_property.rb:8
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/product_property.rb:8
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProduct Create (0.3ms)[0m  [1m[32mINSERT INTO "products" ("name", "upc", "available_on", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "P2"], ["upc", "2134567890"], ["available_on", "2019-07-13 17:54:00"], ["created_at", "2019-07-08 17:55:12.664128"], ["updated_at", "2019-07-08 17:55:12.664128"]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProductProperty Create (0.4ms)[0m  [1m[32mINSERT INTO "product_properties" ("value", "product_id", "property_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["value", "green"], ["product_id", 2], ["property_id", 2], ["created_at", "2019-07-08 17:55:12.665483"], ["updated_at", "2019-07-08 17:55:12.665483"]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/products_controller.rb:33
+Redirected to http://localhost:3000/products/2
+Completed 302 Found in 14ms (ActiveRecord: 4.7ms)
+
+
+Started GET "/products/2" for ::1 at 2019-07-08 12:55:12 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.2ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 2]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 19ms (Views: 16.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 12:55:20 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 17ms (Views: 14.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/2/edit" for ::1 at 2019-07-08 12:55:22 -0500
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/edit.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.2ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 2]]
+  ↳ app/views/products/_form.html.erb:31
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/products/_product_property_fields.html.erb:2
+  Rendered products/_property_fields.html.erb (0.8ms)
+  Rendered products/_product_property_fields.html.erb (4.6ms)
+  Rendered products/_property_fields.html.erb (0.4ms)
+  Rendered products/_product_property_fields.html.erb (1.3ms)
+  Rendered products/_form.html.erb (12.2ms)
+  Rendered products/edit.html.erb within layouts/application (13.4ms)
+Completed 200 OK in 31ms (Views: 28.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 12:55:26 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 23ms (Views: 21.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 13:52:30 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (1.8ms)
+Started GET "/products/new" for ::1 at 2019-07-08 13:52:30 -0500
+Started GET "/products/4/edit" for ::1 at 2019-07-08 13:52:30 -0500
+Started GET "/products" for ::1 at 2019-07-08 13:52:30 -0500
+Processing by ProductsController#new as HTML
+Processing by ProductsController#index as HTML
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Product with 'id'=4):
+  
+app/controllers/products_controller.rb:70:in `set_product'
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendering products/new.html.erb within layouts/application
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (3.3ms)
+  Rendered products/_property_fields.html.erb (0.9ms)
+  Rendered products/_product_property_fields.html.erb (3.1ms)
+  Rendered products/_form.html.erb (9.7ms)
+  Rendered products/new.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 79ms (Views: 77.4ms | ActiveRecord: 0.2ms)
+
+
+Completed 200 OK in 100ms (Views: 99.2ms | ActiveRecord: 0.1ms)
+
+
+Completed 200 OK in 107ms (Views: 102.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 13:52:49 -0500
+Processing by ProductsController#index as HTML
+Started GET "/products" for ::1 at 2019-07-08 13:52:49 -0500
+Started GET "/products/new" for ::1 at 2019-07-08 13:52:49 -0500
+Processing by ProductsController#new as HTML
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (4.0ms)
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendering products/new.html.erb within layouts/application
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (51.2ms)
+  Rendered products/_property_fields.html.erb (0.7ms)
+  Rendered products/_product_property_fields.html.erb (45.2ms)
+  Rendered products/_form.html.erb (51.3ms)
+  Rendered products/new.html.erb within layouts/application (52.8ms)
+Completed 200 OK in 102ms (Views: 99.7ms | ActiveRecord: 0.2ms)
+
+
+Completed 200 OK in 98ms (Views: 96.3ms | ActiveRecord: 0.0ms)
+
+
+Completed 200 OK in 102ms (Views: 99.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/2" for ::1 at 2019-07-08 13:52:51 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.2ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 2]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 27ms (Views: 24.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 13:52:53 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 30ms (Views: 28.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/1" for ::1 at 2019-07-08 13:52:56 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.2ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 1]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 41ms (Views: 38.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 13:52:57 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 45ms (Views: 43.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 13:53:17 -0500
+Started GET "/products" for ::1 at 2019-07-08 13:53:17 -0500
+Processing by ProductsController#index as HTML
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (2.0ms)
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 42ms (Views: 40.3ms | ActiveRecord: 0.1ms)
+
+
+Completed 200 OK in 46ms (Views: 43.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 13:53:46 -0500
+Started GET "/products" for ::1 at 2019-07-08 13:53:46 -0500
+Processing by ProductsController#index as HTML
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (2.7ms)
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 84ms (Views: 82.8ms | ActiveRecord: 0.1ms)
+
+
+Completed 200 OK in 88ms (Views: 86.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 13:54:05 -0500
+Started GET "/products" for ::1 at 2019-07-08 13:54:05 -0500
+Processing by ProductsController#index as HTML
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendering products/index.html.erb within layouts/application
+  ↳ app/views/products/index.html.erb:16
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.erb within layouts/application (1.7ms)
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 28ms (Views: 26.7ms | ActiveRecord: 0.1ms)
+
+
+Completed 200 OK in 29ms (Views: 27.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 14:34:06 -0500
+Started GET "/products" for ::1 at 2019-07-08 14:34:06 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/nathanguy/.rvm/gems/ruby-2.6.3/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+  ↳ /Users/nathanguy/.rvm/gems/ruby-2.6.3/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by ProductsController#index as HTML
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendering products/index.html.erb within layouts/application
+  Rendered products/index.html.erb within layouts/application (9.7ms)
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (197.3ms)
+Completed 200 OK in 337ms (Views: 320.6ms | ActiveRecord: 0.2ms)
+
+
+Completed 200 OK in 333ms (Views: 322.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/products/new" for ::1 at 2019-07-08 14:34:10 -0500
+Processing by ProductsController#new as HTML
+  Rendering products/new.html.erb within layouts/application
+  Rendered products/_property_fields.html.erb (0.9ms)
+  Rendered products/_product_property_fields.html.erb (3.0ms)
+  Rendered products/_form.html.erb (16.8ms)
+  Rendered products/new.html.erb within layouts/application (18.4ms)
+Completed 200 OK in 65ms (Views: 31.7ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/products" for ::1 at 2019-07-08 14:34:45 -0500
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7ghDVbSXfrDZJqT44FDCOwvHXOPX27taBMlHCzYkJdLFwb8Nfg1yBjUNr/Dqm6AwhcLurq3nZdu610NUYU9Rxg==", "product"=>{"name"=>"P3", "upc"=>"3124567890", "available_on(1i)"=>"2019", "available_on(2i)"=>"8", "available_on(3i)"=>"8", "available_on(4i)"=>"19", "available_on(5i)"=>"34", "product_properties_attributes"=>{"0"=>{"property_attributes"=>{"name"=>"Brooklyn's special"}, "value"=>"color: red"}}}, "commit"=>"Create Product"}
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."name" = ? LIMIT ?[0m  [["name", "Brooklyn's special"], ["LIMIT", 1]]
+  ↳ app/models/product_property.rb:8
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/product_property.rb:8
+  [1m[36mProperty Create (0.4ms)[0m  [1m[32mINSERT INTO "properties" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Brooklyn's special"], ["created_at", "2019-07-08 19:34:45.751894"], ["updated_at", "2019-07-08 19:34:45.751894"]]
+  ↳ app/models/product_property.rb:8
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/product_property.rb:8
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProduct Create (0.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "upc", "available_on", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "P3"], ["upc", "3124567890"], ["available_on", "2019-08-08 19:34:00"], ["created_at", "2019-07-08 19:34:45.755599"], ["updated_at", "2019-07-08 19:34:45.755599"]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProductProperty Create (0.1ms)[0m  [1m[32mINSERT INTO "product_properties" ("value", "product_id", "property_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["value", "color: red"], ["product_id", 3], ["property_id", 3], ["created_at", "2019-07-08 19:34:45.757204"], ["updated_at", "2019-07-08 19:34:45.757204"]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/products_controller.rb:33
+Redirected to http://localhost:3000/products/3
+Completed 302 Found in 12ms (ActiveRecord: 3.2ms)
+
+
+Started GET "/products/3" for ::1 at 2019-07-08 14:34:45 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.1ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 3]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 21ms (Views: 18.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 14:34:51 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 24ms (Views: 22.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/3" for ::1 at 2019-07-08 14:34:52 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.3ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 3]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.7ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 27ms (Views: 24.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 14:34:54 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 49ms (Views: 47.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/2" for ::1 at 2019-07-08 14:34:55 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.2ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 2]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 24ms (Views: 19.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 14:34:56 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 26ms (Views: 24.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/1" for ::1 at 2019-07-08 14:34:57 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.1ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 1]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 23ms (Views: 20.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 14:34:59 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 25ms (Views: 23.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/3" for ::1 at 2019-07-08 14:35:06 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.2ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 3]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 26ms (Views: 24.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 14:35:07 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 41ms (Views: 23.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/new" for ::1 at 2019-07-08 14:35:08 -0500
+Processing by ProductsController#new as HTML
+  Rendering products/new.html.erb within layouts/application
+  Rendered products/_property_fields.html.erb (0.7ms)
+  Rendered products/_product_property_fields.html.erb (2.1ms)
+  Rendered products/_form.html.erb (8.8ms)
+  Rendered products/new.html.erb within layouts/application (10.2ms)
+Completed 200 OK in 31ms (Views: 28.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 14:35:09 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 25ms (Views: 24.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 14:49:26 -0500
+Started GET "/products" for ::1 at 2019-07-08 14:49:26 -0500
+Processing by ProductsController#index as HTML
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (1.3ms)
+  Rendered products/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 32ms (Views: 30.8ms | ActiveRecord: 0.1ms)
+
+
+Completed 200 OK in 35ms (Views: 34.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 14:49:34 -0500
+Started GET "/products" for ::1 at 2019-07-08 14:49:34 -0500
+Processing by ProductsController#index as HTML
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendering products/index.html.erb within layouts/application
+  ↳ app/views/products/index.html.erb:16
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.erb within layouts/application (6.5ms)
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 69ms (Views: 67.3ms | ActiveRecord: 0.1ms)
+
+
+Completed 200 OK in 59ms (Views: 58.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 14:49:46 -0500
+Started GET "/products" for ::1 at 2019-07-08 14:49:46 -0500
+Processing by ProductsController#index as HTML
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (3.3ms)
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 42ms (Views: 40.0ms | ActiveRecord: 0.1ms)
+
+
+Completed 200 OK in 42ms (Views: 39.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/products/3" for ::1 at 2019-07-08 14:51:30 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.3ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 3]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 26ms (Views: 23.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 14:51:42 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (23.4ms)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (Cannot have a has_many :through association 'Product#properties' which goes through 'Product#product_properties' before the through association is defined.):
+    18:         <td><%= product.name %></td>
+    19:         <td><%= product.upc %></td>
+    20:         <td><%= product.available_on %></td>
+    21:         <td><%= product.properties %></td>
+    22:         <td><%= link_to 'Show', product %></td>
+    23:         <td><%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    24:       </tr>
+  
+app/views/products/index.html.erb:21:in `block in _app_views_products_index_html_erb___1056616343645391357_70282949609060'
+app/views/products/index.html.erb:16:in `_app_views_products_index_html_erb___1056616343645391357_70282949609060'
+Started GET "/products" for ::1 at 2019-07-08 14:51:44 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (2.7ms)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (Cannot have a has_many :through association 'Product#properties' which goes through 'Product#product_properties' before the through association is defined.):
+    18:         <td><%= product.name %></td>
+    19:         <td><%= product.upc %></td>
+    20:         <td><%= product.available_on %></td>
+    21:         <td><%= product.properties %></td>
+    22:         <td><%= link_to 'Show', product %></td>
+    23:         <td><%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    24:       </tr>
+  
+app/views/products/index.html.erb:21:in `block in _app_views_products_index_html_erb___1056616343645391357_70283000039860'
+app/views/products/index.html.erb:16:in `_app_views_products_index_html_erb___1056616343645391357_70283000039860'
+Started GET "/products" for ::1 at 2019-07-08 14:52:14 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (7.3ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `property' for #<Product:0x00007fd80bf16720>
+Did you mean?  property_ids):
+    18:         <td><%= product.name %></td>
+    19:         <td><%= product.upc %></td>
+    20:         <td><%= product.available_on %></td>
+    21:         <td><%= product.property %></td>
+    22:         <td><%= link_to 'Show', product %></td>
+    23:         <td><%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    24:       </tr>
+  
+app/views/products/index.html.erb:21:in `block in _app_views_products_index_html_erb___1056616343645391357_70282981382640'
+app/views/products/index.html.erb:16:in `_app_views_products_index_html_erb___1056616343645391357_70282981382640'
+Started GET "/products" for ::1 at 2019-07-08 14:52:26 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (1.9ms)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (Cannot have a has_many :through association 'Product#properties' which goes through 'Product#product_properties' before the through association is defined.):
+    18:         <td><%= product.name %></td>
+    19:         <td><%= product.upc %></td>
+    20:         <td><%= product.available_on %></td>
+    21:         <td><%= product.property_ids %></td>
+    22:         <td><%= link_to 'Show', product %></td>
+    23:         <td><%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    24:       </tr>
+  
+app/views/products/index.html.erb:21:in `block in _app_views_products_index_html_erb___1056616343645391357_70282981219960'
+app/views/products/index.html.erb:16:in `_app_views_products_index_html_erb___1056616343645391357_70282981219960'
+Started GET "/products" for ::1 at 2019-07-08 14:53:23 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (318.5ms)
+Completed 500 Internal Server Error in 321ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `product_property' for #<#<Class:0x00007fd8101548d0>:0x00007fd810431f08>
+Did you mean?  product_property_url):
+    18:         <td><%= product.name %></td>
+    19:         <td><%= product.upc %></td>
+    20:         <td><%= product.available_on %></td>
+    21:         <td><%= product_property.property.name %></td>
+    22:         <td><%= link_to 'Show', product %></td>
+    23:         <td><%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    24:       </tr>
+  
+app/views/products/index.html.erb:21:in `block in _app_views_products_index_html_erb___1056616343645391357_70282981250080'
+app/views/products/index.html.erb:16:in `_app_views_products_index_html_erb___1056616343645391357_70282981250080'
+Started GET "/products" for ::1 at 2019-07-08 14:53:26 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (225.2ms)
+Completed 500 Internal Server Error in 227ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `product_property' for #<#<Class:0x00007fd8101548d0>:0x00007fd80adf64e0>
+Did you mean?  product_property_url):
+    18:         <td><%= product.name %></td>
+    19:         <td><%= product.upc %></td>
+    20:         <td><%= product.available_on %></td>
+    21:         <td><%= product_property.property.name %></td>
+    22:         <td><%= link_to 'Show', product %></td>
+    23:         <td><%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    24:       </tr>
+  
+app/views/products/index.html.erb:21:in `block in _app_views_products_index_html_erb___1056616343645391357_70282936006540'
+app/views/products/index.html.erb:16:in `_app_views_products_index_html_erb___1056616343645391357_70282936006540'
+Started GET "/products" for ::1 at 2019-07-08 14:53:51 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (249.5ms)
+Completed 500 Internal Server Error in 252ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `product_property' for #<#<Class:0x00007fd8101548d0>:0x00007fd80af85dd8>
+Did you mean?  product_property_url):
+    18:         <td><%= product.name %></td>
+    19:         <td><%= product.upc %></td>
+    20:         <td><%= product.available_on %></td>
+    21:         <td><%= product_property.property %></td>
+    22:         <td><%= link_to 'Show', product %></td>
+    23:         <td><%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    24:       </tr>
+  
+app/views/products/index.html.erb:21:in `block in _app_views_products_index_html_erb___1056616343645391357_70282936824900'
+app/views/products/index.html.erb:16:in `_app_views_products_index_html_erb___1056616343645391357_70282936824900'
+Started GET "/products" for ::1 at 2019-07-08 14:54:39 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  Rendered products/index.html.erb within layouts/application (21.6ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/Users/nathanguy/Desktop/productX/app/views/products/index.html.erb:37: syntax error, unexpected end-of-input, expecting end):
+  
+app/views/products/index.html.erb:37: syntax error, unexpected end-of-input, expecting end
+Started GET "/products" for ::1 at 2019-07-08 14:55:17 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (3.3ms)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `product_properties' for nil:NilClass):
+    18:         <td><%= product.name %></td>
+    19:         <td><%= product.upc %></td>
+    20:         <td><%= product.available_on %></td>
+    21:         <% @product.product_properties.each do |product_property| %>
+    22:         <td><%= product_property.property.name %>: <%= product_property.value %></td><% end %>
+    23:         <td><%= link_to 'Show', product %></td>
+    24:         <td><%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+app/views/products/index.html.erb:21:in `block in _app_views_products_index_html_erb___1056616343645391357_70282945285460'
+app/views/products/index.html.erb:16:in `_app_views_products_index_html_erb___1056616343645391357_70282945285460'
+Started GET "/products" for ::1 at 2019-07-08 14:59:54 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 30ms (Views: 28.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/products/3" for ::1 at 2019-07-08 15:06:42 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.2ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 3]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 33ms (Views: 31.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products" for ::1 at 2019-07-08 15:06:46 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 27ms (Views: 25.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/records?date=7-15-19&title=Record+3&amount=600" for ::1 at 2019-07-15 14:39:38 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/nathanguy/.rvm/gems/ruby-2.6.3/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+  
+ActionController::RoutingError (No route matches [GET] "/records"):
+  
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+puma (3.12.1) lib/puma/configuration.rb:227:in `call'
+puma (3.12.1) lib/puma/server.rb:660:in `handle_request'
+puma (3.12.1) lib/puma/server.rb:474:in `process_client'
+puma (3.12.1) lib/puma/server.rb:334:in `block in run'
+puma (3.12.1) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/" for ::1 at 2019-07-15 14:39:43 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 386ms (Views: 378.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products/new" for ::1 at 2019-07-15 14:39:48 -0500
+Processing by ProductsController#new as HTML
+  Rendering products/new.html.erb within layouts/application
+  Rendered products/_property_fields.html.erb (1.8ms)
+  Rendered products/_product_property_fields.html.erb (4.0ms)
+  Rendered products/_form.html.erb (15.0ms)
+  Rendered products/new.html.erb within layouts/application (16.7ms)
+Completed 200 OK in 72ms (Views: 34.6ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/products" for ::1 at 2019-07-15 14:40:11 -0500
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mBRq7NKkcjVXutDcSCtyFq+Vtlp9P5Al1fKg2ytCT0iz3Za0GD5+g7uR29RC4BAdIZAEFwcDTqRr7KSEfCk7XA==", "product"=>{"name"=>"P4", "upc"=>"4123567890", "available_on(1i)"=>"2019", "available_on(2i)"=>"7", "available_on(3i)"=>"16", "available_on(4i)"=>"19", "available_on(5i)"=>"39", "product_properties_attributes"=>{"0"=>{"property_attributes"=>{"name"=>"Brand: Nike"}, "value"=>"Model: Air Max"}}}, "commit"=>"Create Product"}
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."name" = ? LIMIT ?[0m  [["name", "Brand: Nike"], ["LIMIT", 1]]
+  ↳ app/models/product_property.rb:8
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/product_property.rb:8
+  [1m[36mProperty Create (0.4ms)[0m  [1m[32mINSERT INTO "properties" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Brand: Nike"], ["created_at", "2019-07-15 19:40:11.323796"], ["updated_at", "2019-07-15 19:40:11.323796"]]
+  ↳ app/models/product_property.rb:8
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/product_property.rb:8
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProduct Create (0.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "upc", "available_on", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "P4"], ["upc", "4123567890"], ["available_on", "2019-07-16 19:39:00"], ["created_at", "2019-07-15 19:40:11.326977"], ["updated_at", "2019-07-15 19:40:11.326977"]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProductProperty Create (0.2ms)[0m  [1m[32mINSERT INTO "product_properties" ("value", "product_id", "property_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["value", "Model: Air Max"], ["product_id", 4], ["property_id", 4], ["created_at", "2019-07-15 19:40:11.328762"], ["updated_at", "2019-07-15 19:40:11.328762"]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/products_controller.rb:33
+Redirected to http://localhost:3000/products/4
+Completed 302 Found in 12ms (ActiveRecord: 3.1ms)
+
+
+Started GET "/products/4" for ::1 at 2019-07-15 14:40:11 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.2ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 4]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 20ms (Views: 17.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products" for ::1 at 2019-07-15 14:40:15 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 25ms (Views: 23.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products/4" for ::1 at 2019-07-15 14:40:18 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.9ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 4]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 31ms (Views: 28.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/products" for ::1 at 2019-07-15 14:40:20 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 25ms (Views: 22.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products/4" for ::1 at 2019-07-15 14:40:23 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.2ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 4]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 29ms (Views: 26.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products/4/edit" for ::1 at 2019-07-15 14:40:25 -0500
+Processing by ProductsController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/edit.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.1ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 4]]
+  ↳ app/views/products/_form.html.erb:31
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/products/_product_property_fields.html.erb:2
+  Rendered products/_property_fields.html.erb (1.0ms)
+  Rendered products/_product_property_fields.html.erb (5.2ms)
+  Rendered products/_property_fields.html.erb (0.5ms)
+  Rendered products/_product_property_fields.html.erb (1.8ms)
+  Rendered products/_form.html.erb (12.7ms)
+  Rendered products/edit.html.erb within layouts/application (14.6ms)
+Completed 200 OK in 37ms (Views: 30.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products" for ::1 at 2019-07-15 14:40:29 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 29ms (Views: 27.4ms | ActiveRecord: 0.3ms)
+
+

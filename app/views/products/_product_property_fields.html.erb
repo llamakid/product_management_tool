@@ -1,0 +1,8 @@
+
+    <%= form.fields_for :property do |builder| %>
+      <%= render 'property_fields', form: builder %>
+    <% end %>
+    <div class="field">
+      <%= form.label :value %>
+      <%= form.text_field :value, id: :value, class: 'form-control' %>
+    </div>

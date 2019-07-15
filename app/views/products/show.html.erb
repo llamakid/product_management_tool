@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Upc:</strong>
+  <%= @product.upc %>
+</p>
+
+<p>
+  <strong>Available on:</strong>
+  <%= @product.available_on %>
+</p>
+
+<p><strong>Properties:</strong></p>
+<% @product.product_properties.each do |product_property| %>
+  <li><%= product_property.property.name %>: <%= product_property.value %></li>
+<% end %>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
