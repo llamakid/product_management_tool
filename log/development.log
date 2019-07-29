@@ -896,3 +896,118 @@ Processing by ProductsController#index as HTML
 Completed 200 OK in 29ms (Views: 27.4ms | ActiveRecord: 0.3ms)
 
 
+Started GET "/" for ::1 at 2019-07-29 08:52:16 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/nathanguy/.rvm/gems/ruby-2.6.3/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 329ms (Views: 315.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for ::1 at 2019-07-29 08:55:48 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 25ms (Views: 19.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products/new" for ::1 at 2019-07-29 08:55:50 -0500
+Processing by ProductsController#new as HTML
+  Rendering products/new.html.erb within layouts/application
+  Rendered products/_property_fields.html.erb (0.6ms)
+  Rendered products/_product_property_fields.html.erb (2.0ms)
+  Rendered products/_form.html.erb (9.7ms)
+  Rendered products/new.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 66ms (Views: 41.8ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/products" for ::1 at 2019-07-29 08:56:19 -0500
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aShTYb9/1Ei/zBK5Y7V17xBoWgeu9TacKr/Ud5Tu2DD1BPTz5MTuKgxsZqsn+VFaN7P1FvdCfGJQtjnk9kDKBg==", "product"=>{"name"=>"P5", "upc"=>"5123467890", "available_on(1i)"=>"2019", "available_on(2i)"=>"7", "available_on(3i)"=>"28", "available_on(4i)"=>"13", "available_on(5i)"=>"55", "product_properties_attributes"=>{"0"=>{"property_attributes"=>{"name"=>"Brand: Vans"}, "value"=>"Model: Old Skool"}}}, "commit"=>"Create Product"}
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."name" = ? LIMIT ?[0m  [["name", "Brand: Vans"], ["LIMIT", 1]]
+  ↳ app/models/product_property.rb:8
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/product_property.rb:8
+  [1m[36mProperty Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "properties" WHERE "properties"."name" = ? LIMIT ?[0m  [["name", "Brand: Vans"], ["LIMIT", 1]]
+  ↳ app/models/product_property.rb:8
+  [1m[36mProperty Create (0.4ms)[0m  [1m[32mINSERT INTO "properties" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Brand: Vans"], ["created_at", "2019-07-29 13:56:19.483678"], ["updated_at", "2019-07-29 13:56:19.483678"]]
+  ↳ app/models/product_property.rb:8
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/product_property.rb:8
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProduct Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "products" WHERE "products"."name" = ? LIMIT ?[0m  [["name", "P5"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProduct Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "products" WHERE "products"."upc" = ? LIMIT ?[0m  [["upc", "5123467890"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProperty Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "properties" WHERE "properties"."name" = ? AND "properties"."id" != ? LIMIT ?[0m  [["name", "Brand: Vans"], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mCACHE Product Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "products" WHERE "products"."name" = ? LIMIT ?[0m  [["name", "P5"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mCACHE Product Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "products" WHERE "products"."upc" = ? LIMIT ?[0m  [["upc", "5123467890"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/products_controller.rb:33
+  Rendering products/new.html.erb within layouts/application
+  Rendered products/_property_fields.html.erb (1.2ms)
+  Rendered products/_product_property_fields.html.erb (3.1ms)
+  Rendered products/_form.html.erb (10.6ms)
+  Rendered products/new.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 59ms (Views: 40.3ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/products" for ::1 at 2019-07-29 08:56:27 -0500
+Processing by ProductsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OHCwmE8ud67NztOFypve7RD65tvHmgjtx5BKQhN6uBxRFFlJRgPUM+2hPO+REE5PenrhcqZCPK8mmqMRH43kxw==", "product"=>{"name"=>"P5", "upc"=>"5123467890", "available_on(1i)"=>"2019", "available_on(2i)"=>"7", "available_on(3i)"=>"30", "available_on(4i)"=>"13", "available_on(5i)"=>"55", "product_properties_attributes"=>{"0"=>{"property_attributes"=>{"name"=>"Brand: Vans", "id"=>"5"}, "value"=>"Model: Old Skool"}}}, "commit"=>"Create Product"}
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."name" = ? LIMIT ?[0m  [["name", "Brand: Vans"], ["LIMIT", 1]]
+  ↳ app/models/product_property.rb:8
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProduct Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "products" WHERE "products"."name" = ? LIMIT ?[0m  [["name", "P5"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProduct Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "products" WHERE "products"."upc" = ? LIMIT ?[0m  [["upc", "5123467890"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProperty Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "properties" WHERE "properties"."name" = ? AND "properties"."id" != ? LIMIT ?[0m  [["name", "Brand: Vans"], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mCACHE Product Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "products" WHERE "products"."name" = ? LIMIT ?[0m  [["name", "P5"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mCACHE Product Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "products" WHERE "products"."upc" = ? LIMIT ?[0m  [["upc", "5123467890"], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProduct Create (0.4ms)[0m  [1m[32mINSERT INTO "products" ("name", "upc", "available_on", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "P5"], ["upc", "5123467890"], ["available_on", "2019-07-30 13:55:00"], ["created_at", "2019-07-29 13:56:28.012457"], ["updated_at", "2019-07-29 13:56:28.012457"]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[36mProductProperty Create (0.2ms)[0m  [1m[32mINSERT INTO "product_properties" ("value", "product_id", "property_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["value", "Model: Old Skool"], ["product_id", 5], ["property_id", 5], ["created_at", "2019-07-29 13:56:28.014414"], ["updated_at", "2019-07-29 13:56:28.014414"]]
+  ↳ app/controllers/products_controller.rb:33
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/products_controller.rb:33
+Redirected to http://localhost:3000/products/5
+Completed 302 Found in 18ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/products/5" for ::1 at 2019-07-29 08:56:28 -0500
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/products_controller.rb:70
+  Rendering products/show.html.erb within layouts/application
+  [1m[36mProductProperty Load (0.2ms)[0m  [1m[34mSELECT "product_properties".* FROM "product_properties" WHERE "product_properties"."product_id" = ?[0m  [["product_id", 5]]
+  ↳ app/views/products/show.html.erb:19
+  [1m[36mProperty Load (0.1ms)[0m  [1m[34mSELECT  "properties".* FROM "properties" WHERE "properties"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/products/show.html.erb:20
+  Rendered products/show.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 49ms (Views: 47.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products" for ::1 at 2019-07-29 08:56:31 -0500
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/views/products/index.html.erb:16
+  Rendered products/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 23ms (Views: 22.5ms | ActiveRecord: 0.1ms)
+
+
