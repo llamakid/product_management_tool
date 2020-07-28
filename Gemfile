@@ -20,7 +20,7 @@ gem 'bootstrap-sass', '~> 3.4.1'
 
 gem 'react-rails', '~> 1.0'
 
-gem 'json' , '~> 1.8.2'
+gem 'json' , '~> 2.3.0'
 
 gem 'jquery-rails'
 
